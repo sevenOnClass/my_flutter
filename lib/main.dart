@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
 void main() {
   debugPaintSizeEnabled=true;
@@ -10,20 +10,45 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: Colors.white),
-      child: Center(
-        child: Text(
-          'Hello Seven',
-          textDirection: TextDirection.rtl,
-          style: TextStyle(
-            fontSize: 32,
-            color: Colors.black87,
-          ),
+    return MaterialApp(
+      title:'Flutter layout demo',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('layout demo'),
+        ),
+        body: Center(
+          child: buildExpandedImages(),
         ),
       ),
     );
   }
+
+
+  Widget buildOverflowingRow() => Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: <Widget>[
+      Image.asset('images/pic1.jpg'),
+      Image.asset('Images/pic2.jpg'),
+      Image.asset('images/pic3.jpg'),
+    ],
+  );
+
+  Widget buildExpandedImages() =>
+      Row(
+//        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Expanded(
+            child: Image.asset('images/pic1.jpg'),
+          ),
+          Expanded(
+            child: Image.asset('images/pic2.jpg'),
+          ),
+          Expanded(
+            child: Image.asset('images/pic3.jpg'),
+          ),
+        ],
+      );
 }
 
 class MyHomePage extends StatefulWidget {
