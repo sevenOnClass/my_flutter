@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  debugPaintSizeEnabled=true;
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -93,6 +97,14 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'You have pushed the button this many times2:',
             ),
+            Text(
+              'hello world'
+            ),
+            Icon(
+              Icons.star,
+              color: Colors.red[500],
+            ),
+
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,
