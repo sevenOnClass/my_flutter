@@ -10,6 +10,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+//    return Container(
+//      child: buildExpandedImages(),
+//    );
     return MaterialApp(
       title:'Flutter layout demo',
       home: Scaffold(
@@ -25,6 +28,7 @@ class MyApp extends StatelessWidget {
 
 
   Widget buildOverflowingRow() => Row(
+    mainAxisSize: MainAxisSize.min,
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: <Widget>[
       Image.asset('images/pic1.jpg'),
@@ -35,7 +39,8 @@ class MyApp extends StatelessWidget {
 
   Widget buildExpandedImages() =>
       Row(
-//        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Expanded(
