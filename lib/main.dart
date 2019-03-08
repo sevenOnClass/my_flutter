@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
+//import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
 void main() {
-  debugPaintSizeEnabled=true;
+//  debugPaintSizeEnabled=true;
   runApp(MyApp());
 }
 
@@ -15,89 +15,32 @@ class MyApp extends StatelessWidget {
 //      child: buildExpandedImages(),
 //    );
 
-    var stars = Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Icon(Icons.star,color: Colors.green[500]),
-        Icon(Icons.star,color: Colors.green[500]),
-        Icon(Icons.star,color: Colors.green[500]),
-        Icon(Icons.star,color: Colors.black),
-        Icon(Icons.star,color: Colors.black),
-      ],
-    );
 
-    final ratings = Container(
-      padding: EdgeInsets.all(20),
+    Color color = Theme.of(context).primaryColor;
+
+    Widget buttonSection = Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          stars,
-          Text(
-            '170 Reviews',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w800,
-              fontFamily: 'Roboto',
-              letterSpacing: 0.5,
-              fontSize: 20,
-            ),
-          ),
+        children: [
+          _buildButtonColumn(color, Icons.call, 'CALL'),
+          _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
+          _buildButtonColumn(color, Icons.share, 'SHARE'),
         ],
       ),
     );
 
-    final descTextStyle = TextStyle(
-      color: Colors.black,
-      fontWeight: FontWeight.w800,
-      fontFamily: 'Roboto',
-      letterSpacing: 0.5,
-      fontSize: 18,
-      height: 2,
-    );
-
-    final iconList = DefaultTextStyle.merge(
-      style: descTextStyle,
-      child: Container(
-        padding: EdgeInsets.all(20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Icon(Icons.kitchen, color: Colors.green[500]),
-                Text('PPEP:'),
-                Text('25 min'),
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                Icon(Icons.timer, color: Colors.green[500]),
-                Text('Cook:'),
-                Text('1 hr'),
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                Icon(Icons.restaurant, color: Colors.green[500]),
-                Text('FEEDS:'),
-                Text('4-6'),
-              ],
-            ),
-          ],
-        ),
+    Widget textSection = Container(
+      padding: const EdgeInsets.all(32),
+      child: Text(
+        'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
+            'Alps. Situated 1,578 meters above sea level, it is one of the '
+            'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+            'half-hour walk through pastures and pine forest, leads you to the '
+            'lake, which warms to 20 degrees Celsius in the summer. Activities '
+            'enjoyed here include rowing, and riding the summer toboggan run.',
+        softWrap: true,
       ),
     );
-
-    final leftColumn = Container(
-      padding: EdgeInsets.fromLTRB(20, 30, 20, 20),
-      child: Column(
-        children: <Widget>[
-          ratings,
-          iconList,
-        ],
-      ),
-    );
-
 
 
     return MaterialApp(
@@ -106,27 +49,79 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('layout demo'),
         ),
-        body: Center(
-          child: Container(
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
-            height: 700,
-            child: Card(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    width:400,
-                    child: leftColumn,
-                ),
-                ],
-              ),
+        body: ListView(
+          children: <Widget>[
+            Image.asset(
+              'images/lake.jpg',
+              width: 600,
+              height: 240,
+              fit: BoxFit.cover,
             ),
-          ),
+            titleSection,
+            buttonSection,
+            textSection,
+          ],
         ),
-      ),
+       ),
     );
   }
 
+  Column _buildButtonColumn(Color color, IconData icon, String label) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(icon, color: color),
+        Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: color,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+
+  Widget titleSection = Container(
+    padding: const EdgeInsets.all(32),
+    child: Row(
+      children: <Widget>[
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Text(
+                  'Oeschinen Lake Campground',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Text(
+                'Kandersteg, Switzerland',
+                style: TextStyle(
+                  color: Colors.grey[500],
+                ),
+              ),
+            ],
+          ),
+        ),
+        Icon(
+          Icons.star,
+          color: Colors.red[500],
+        ),
+        Text('41'),
+      ],
+    ),
+  );
 
 
   Widget buildOverflowingRow() => Row(
