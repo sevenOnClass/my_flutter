@@ -37,6 +37,9 @@ class RandomWordsState extends State<RandomWords> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('Startup Genrated Word'),
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),
+        ],
       ),
       body: _buildSetting(),
     );
@@ -89,6 +92,41 @@ class RandomWordsState extends State<RandomWords> {
           }
         });
       },
+    );
+  }
+
+  void _pushSaved() {
+
+    Navigator.of(context).push(
+      new MaterialPageRoute(
+        builder: (context){
+          final titles = _saved.map(
+              (word) {
+                return new ListTile(
+                  title: new Text(
+                    word.asPascalCase,
+                    style: _biggerFont,
+                  ),
+
+                );
+              }
+          );
+          final divides = ListTile
+              .divideTiles(
+                tiles: titles,
+                context: context,
+              )
+              .toList();
+          return new Scaffold(
+            appBar: new AppBar(
+              title: new Text(
+                'Saved Words'
+              ),
+            ),
+            body: new ListView(children: divides),
+          );
+        },
+      ),
     );
   }
 }
