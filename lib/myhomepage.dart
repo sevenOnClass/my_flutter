@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:developer';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -14,6 +15,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
+      debugger();
       _counter ++;
     });
   }
@@ -40,10 +42,11 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('open new route'),
               textColor: Colors.blue,
               onPressed: (){
-                Navigator.push(context,
-                    new MaterialPageRoute(builder: (context){
-                      return new NewRoute();
-                    }));
+//                Navigator.push(context,
+//                    new MaterialPageRoute(builder: (context){
+//                      return new NewRoute();
+//                    }));
+                Navigator.pushNamed(context, 'new_page');
               },
             ),
           ],

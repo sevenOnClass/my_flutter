@@ -18,6 +18,9 @@ class MyApp extends StatelessWidget {
 
       home: new MyHomePage(title: 'Flutter Demo Home Page'),
 //      home: new RandomWords(),
+      routes: {
+        "new_page":(context)=>NewRoute(),
+      },
     );
   }
 }
