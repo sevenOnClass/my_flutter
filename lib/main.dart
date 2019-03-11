@@ -22,7 +22,7 @@ class RandomWords extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return RandomWordsState();
+    return new RandomWordsState();
   }
 }
 
