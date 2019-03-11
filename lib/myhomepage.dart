@@ -36,13 +36,40 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            FlatButton(
+              child: Text('open new route'),
+              textColor: Colors.blue,
+              onPressed: (){
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context){
+                      return new NewRoute();
+                    }));
+              },
+            ),
           ],
+
         ),
+
       ),
       floatingActionButton: new FloatingActionButton(
           onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: new Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class NewRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new Scaffold(
+      appBar: new AppBar(
+        title: Text('new route'),
+      ),
+      body: Center(
+        child: Text('this is a new route'),
       ),
     );
   }
