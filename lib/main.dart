@@ -10,6 +10,9 @@ class MyApp extends StatelessWidget {
 
     return new MaterialApp(
       title: 'Welcome to Flutte1',
+      theme: new ThemeData(
+        primaryColor: Colors.white,
+      ),
       home: new RandomWords(),
     );
   }
