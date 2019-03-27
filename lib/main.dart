@@ -11,14 +11,15 @@ class MainAPP extends StatelessWidget {
     // TODO: implement build
     return new MaterialApp(
       title: 'Test0312',
-      home: Scaffold(
+      home: RandomWords(),
+      /*Scaffold(
         appBar: AppBar(
           title: Text('hello'),
         ),
         body: Center(
           child: Text('hello seven'),
         ),
-      ),
+      ),*/
     );
   }
 }
